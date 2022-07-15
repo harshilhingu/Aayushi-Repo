@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContentListComponent } from './content-list/content-list.component';
 import { ContentCardComponent } from './content-card/content-card.component';
-import { FilterdBike } from './filteringbikebytypes.pipe';
-import { FilteringBikeByAuthor } from './filteringbikesbyauthor.pipe';
+import { FilterdBike } from './pipes/filteringbikebytypes.pipe';
+import { FilteringBikeByAuthor } from './pipes/filteringbikesbyauthor.pipe';
+import { HighlightImportantDataDirective } from './highlight-important-data.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { FilteringBikeByAuthor } from './filteringbikesbyauthor.pipe';
     ContentListComponent,
     ContentCardComponent,
     FilterdBike,
-    FilteringBikeByAuthor
+    FilteringBikeByAuthor,
+    HighlightImportantDataDirective,
   ],
   imports: [
     BrowserModule,

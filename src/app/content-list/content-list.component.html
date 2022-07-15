@@ -6,7 +6,7 @@
   [class.is-odd]="!isEven"
 ></app-content-card> -->
 
-<!-- Assignment3 -->
+<!-- Assignment3 and Assignment4 -->
 
 <div><label>
   Author name search:
@@ -18,39 +18,42 @@
 {{ authorSearchMessage.message }}
 <div *ngIf="(authorSearchMessage.found===true);else other_content">
 <!-- For Bonus Point -->
-</div><app-content-card
-*ngFor="let bikes of Bikeslist | FilteringBikeByAuthor:(authorToSearchFor.value) ; even as isEven"
-[BikesName]="bikes"
-[class.is-even]="isEven"
-[class.is-odd]="!isEven"
-class="contentfound"
-></app-content-card>
+<app-content-card
+  *ngFor="let individualPlayer of (Bikeslist | FilteringBikeByAuthor:authorToSearchFor.value); even as isEven;last as isLast;"
+  [BikesName]="individualPlayer" [class.is-even]="isEven" [class.is-odd]="!isEven" class="no-type" 
+  [class]="individualPlayer.author.toLowerCase() === authorToSearchFor.value.toLowerCase() ? 'player-found' : ''"
+  [isLast]="isLast">
+</app-content-card>
 
-<ng-template #other_content></ng-template>
 </div>
+<ng-template #other_content></ng-template>
 <!-- no-type -->
-<!-- <app-content-card
-  *ngFor="let bikes of (Bikeslist|FilterdBike); even as isEven"
+<app-content-card
+  *ngFor="let bikes of (Bikeslist|FilterdBike); even as isEven;last as isLast"
   [BikesName]="bikes"
   [class.is-even]="isEven"
   [class.is-odd]="!isEven"
   class="no-type"
-></app-content-card> -->
+  [isLast]="isLast"
+></app-content-card>
 
 <!-- HeavyModel -->
 <app-content-card
-  *ngFor="let bikes of Bikeslist | FilterdBike: 'Heavy model'; even as isEven"
+  *ngFor="let bikes of Bikeslist | FilterdBike: 'Heavy model'; even as isEven;last as isLast"
   [BikesName]="bikes"
   [class.is-even]="isEven"
   [class.is-odd]="!isEven"
   class="Heavymodel"
+  [isLast]="isLast"
 ></app-content-card>
 
 <!-- Race Bike -->
-<!-- <app-content-card
-  *ngFor="let bikes of (Bikeslist|FilterdBike:'Race bike'); even as isEven"
+<app-content-card
+  *ngFor="let bikes of (Bikeslist|FilterdBike:'Race bike'); even as isEven;last as isLast"
   [BikesName]="bikes"
   [class.is-even]="isEven"
   [class.is-odd]="!isEven"
   class="RaceBike"
-></app-content-card> -->
+  [isLast]="isLast" 
+></app-content-card>
+

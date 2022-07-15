@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Content } from '../models/content';
+import { BikersService } from '../services/bikers.service';
 
 @Component({
   selector: 'app-content-list',
@@ -9,86 +10,59 @@ import { Content } from '../models/content';
 export class ContentListComponent implements OnInit {
   Bikeslist: Content[];
   authorSearchMessage = {
-    message: "",
-    found: false
+    message: '',
+    found: false,
   };
-  constructor() {
-    this.Bikeslist = [
-      {
-        id: 0,
-        title: 'CBR 10000RR',
-        body: 'steel',
-        imageLink: 'https://wallpaperaccess.com/cbr-bike',
-        type: 'Race bike',
-        author: 'tata motors',
-        hashtags: ["BMW", "Trigger", "Hayabuza"],
-      },
-
-      {
-        id: 1,
-        title: 'BMW',
-        body: 'steel',
-        imageLink: 'https://wallpaperaccess.com/cbr-bike',
-        type: 'Race bike',
-        author: 'tata motors',
-        hashtags: ["BMW", "Trigger", "Hayabuza"],
-      },
-      {
-        id: 3,
-        title: 'Splender',
-        body: 'steel',
-        imageLink: 'https://wallpaperaccess.com/cbr-bike',
-        type: "Heavy model",
-        author: 'tesla',
-        hashtags: ["BMW", "Trigger", "Hayabuza"],
-      },
-      {
-        id: 3,
-        title: 'Royal Enfeild',
-        body: 'whole steel',
-        imageLink: 'https://wallpaperaccess.com/cbr-bike',
-        type: "Heavy model",
-        author: 'tata motors',
-        hashtags: ["BMW", "Trigger", "Hayabuza"],
-      },
-      {
-        id: 4,
-        title: 'Hero Honda',
-        body: 'aluminum',
-        imageLink: 'https://wallpaperaccess.com/cbr-bike',
-        author: 'tata motors',
-        hashtags: ["BMW", "Trigger", "Hayabuza"],
-      },
-      {
-        id: 5,
-        title: 'Hayabuza',
-        body: 'aluminum',
-        imageLink: 'https://wallpaperaccess.com/cbr-bike',
-        type: "",
-        author: 'tesla',
-        hashtags: ["BMW", "Trigger", "Hayabuza"],
-      },
-      {
-        id: 6,
-        title: 'Trigger',
-        body: 'aluminum',
-        imageLink: 'https://wallpaperaccess.com/cbr-bike',
-        // type:
-        author: 'tesla',
-        hashtags: ["BMW", "Trigger", "Hayabuza"],
-      },
-    
-    ];
+  hikaru: Content = {
+    id: 3,
+    title: 'Sam',
+    body: 'A Biker  who became a successful Actor instead',
+    author: 'Harshil',
+    type: 'GM',
+    hashtags: ['supergm', 'indepthanalysis'],
+  };
+  types: string[] = ['', 'IM', 'FM', 'GM'];
+  constructor(private BikerService: BikersService) {
+    this.Bikeslist = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // getContent test
+    this.BikerService.getContent().subscribe(
+      (BikersArray) => (this.Bikeslist = BikersArray)
+    );
+
+    // getContentItem test - worked
+    // this.BikerService.getContentItem(1).subscribe(BikerSingleItem => {
+    //   console.log("Got the content item: ", BikerSingleItem);
+    // });
+
+    // addContentItem test - worked
+    // this.chessChampionService.addContentItem(this.hikaru).subscribe(chessChampionsArray => {
+    //   console.log("Added Hikaru: ", chessChampionsArray);
+    // });
+
+    // updateContentItem test - worked
+    // this.chessChampionService.updateContentItem(this.hikaru).subscribe(chessChampionsArray => {
+    //   console.log("updated Hikaru: ", chessChampionsArray);
+    // });
+
+    // deleteContentItem test - worked
+    // this.chessChampionService.deleteContentItem(1).subscribe(chessChampionsSingleItem => {
+    //   console.log("Deleted the content item: ", chessChampionsSingleItem);
+    // });
+  }
   checkForAuthorInList(authorNameValue: string): void {
-    if (this.Bikeslist.some(bike => bike.author.toLowerCase() === authorNameValue.toLowerCase())) {
-      this.authorSearchMessage.message = "Author Found";
+    if (
+      this.Bikeslist.some(
+        (bike) => bike.author.toLowerCase() === authorNameValue.toLowerCase()
+      )
+    ) {
+      this.authorSearchMessage.message = 'Author Found';
       this.authorSearchMessage.found = true;
-    }
-    else {
-      this.authorSearchMessage.message = "Author Not Found";
+    } else {
+      this.authorSearchMessage.message = 'Author Not Found';
       this.authorSearchMessage.found = false;
-    }}
+    }
+  }
 }

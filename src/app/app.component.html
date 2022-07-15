@@ -1,3 +1,15 @@
 <div>
-<app-content-list></app-content-list>
+  <div class="bike-search">
+    <label>
+      Biker's Search:
+      <input type="number" autofocus #idNumber />
+    </label>
+    <br />
+    <button (click)="checkForIdInList(idNumber.value)">
+      Check for player at id
+    </button>
+    <app-content-card [BikesName]="individualBiker" class="no-type">
+    </app-content-card>
+  </div>
+  <app-content-list></app-content-list>
 </div>

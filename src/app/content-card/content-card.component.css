@@ -49,6 +49,26 @@ p {
   text-align: right;
   font-weight: bold;
 }
+
+
+:host.is-last .author.tagFontColor {
+  color: darkred;
+}
+
+:host.is-last .author.typeBorder {
+  border: 4px solid #0000ff;
+}
+
+.type {
+  text-align: right;
+  font-weight: bold;
+   display: inline-block;
+}
+
+:host.is-last .type.typeBorder {
+  border: 4px solid #0000ff;
+}
+
 .hashtags {
   border: 1px solid #000;
   margin: 8px;
@@ -56,7 +76,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  background-color: aliceblue;
+  background-color: cornflowerblue;
   border-radius: 10px;
 }
 .hashtags span {
@@ -68,3 +88,6 @@ p {
   margin: 0 8px;
   font-weight: bold;
 }
+
+
+
