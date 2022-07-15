@@ -1,7 +1,56 @@
-<!-- <app-content-card *ngFor="let bikes of Bikeslist">
-  {{ bikes }}
-</app-content-card> -->
+<!-- assignment2 -->
+<!-- <app-content-card
+  *ngFor="let bikes of Bikeslist; even as isEven"
+  [BikesName]="bikes"
+  [class.is-even]="isEven"
+  [class.is-odd]="!isEven"
+></app-content-card> -->
 
+<!-- Assignment3 -->
 
-<app-content-card *ngFor="let bikes of Bikeslist; even as isEven" [BikesName]="bikes"
-  [class.is-even]="isEven" [class.is-odd]="!isEven"></app-content-card>
+<div><label>
+  Author name search:
+  <input autofocus #authorToSearchFor>
+</label>
+<button (click)="checkForAuthorInList(authorToSearchFor.value)">Check for Author</button>
+</div>
+<div class="author-error" [style]="authorSearchMessage.found ? 'color: blue' : 'color: grey'">
+{{ authorSearchMessage.message }}
+<div *ngIf="(authorSearchMessage.found===true);else other_content">
+<!-- For Bonus Point -->
+</div><app-content-card
+*ngFor="let bikes of Bikeslist | FilteringBikeByAuthor:(authorToSearchFor.value) ; even as isEven"
+[BikesName]="bikes"
+[class.is-even]="isEven"
+[class.is-odd]="!isEven"
+class="contentfound"
+></app-content-card>
+
+<ng-template #other_content></ng-template>
+</div>
+<!-- no-type -->
+<!-- <app-content-card
+  *ngFor="let bikes of (Bikeslist|FilterdBike); even as isEven"
+  [BikesName]="bikes"
+  [class.is-even]="isEven"
+  [class.is-odd]="!isEven"
+  class="no-type"
+></app-content-card> -->
+
+<!-- HeavyModel -->
+<app-content-card
+  *ngFor="let bikes of Bikeslist | FilterdBike: 'Heavy model'; even as isEven"
+  [BikesName]="bikes"
+  [class.is-even]="isEven"
+  [class.is-odd]="!isEven"
+  class="Heavymodel"
+></app-content-card>
+
+<!-- Race Bike -->
+<!-- <app-content-card
+  *ngFor="let bikes of (Bikeslist|FilterdBike:'Race bike'); even as isEven"
+  [BikesName]="bikes"
+  [class.is-even]="isEven"
+  [class.is-odd]="!isEven"
+  class="RaceBike"
+></app-content-card> -->

@@ -8,7 +8,10 @@ import { Content } from '../models/content';
 })
 export class ContentListComponent implements OnInit {
   Bikeslist: Content[];
-
+  authorSearchMessage = {
+    message: "",
+    found: false
+  };
   constructor() {
     this.Bikeslist = [
       {
@@ -17,7 +20,7 @@ export class ContentListComponent implements OnInit {
         body: 'steel',
         imageLink: 'https://wallpaperaccess.com/cbr-bike',
         type: 'Race bike',
-        author: 'Tata motors',
+        author: 'tata motors',
         hashtags: ["BMW", "Trigger", "Hayabuza"],
       },
 
@@ -27,38 +30,65 @@ export class ContentListComponent implements OnInit {
         body: 'steel',
         imageLink: 'https://wallpaperaccess.com/cbr-bike',
         type: 'Race bike',
-        author: 'Tata motors',
+        author: 'tata motors',
         hashtags: ["BMW", "Trigger", "Hayabuza"],
       },
       {
         id: 3,
-        title: 'splender',
+        title: 'Splender',
         body: 'steel',
         imageLink: 'https://wallpaperaccess.com/cbr-bike',
-        type: 'old man',
-        author: 'author',
+        type: "Heavy model",
+        author: 'tesla',
         hashtags: ["BMW", "Trigger", "Hayabuza"],
       },
       {
         id: 3,
-        title: 'royal enfeild',
+        title: 'Royal Enfeild',
         body: 'whole steel',
         imageLink: 'https://wallpaperaccess.com/cbr-bike',
-        type: 'big bikes',
-        author: 'Tata motors',
+        type: "Heavy model",
+        author: 'tata motors',
         hashtags: ["BMW", "Trigger", "Hayabuza"],
       },
       {
         id: 4,
-        title: 'hero honda',
+        title: 'Hero Honda',
         body: 'aluminum',
         imageLink: 'https://wallpaperaccess.com/cbr-bike',
-        type: 'low cost',
-        author: 'Tata motors',
+        author: 'tata motors',
         hashtags: ["BMW", "Trigger", "Hayabuza"],
       },
+      {
+        id: 5,
+        title: 'Hayabuza',
+        body: 'aluminum',
+        imageLink: 'https://wallpaperaccess.com/cbr-bike',
+        type: "",
+        author: 'tesla',
+        hashtags: ["BMW", "Trigger", "Hayabuza"],
+      },
+      {
+        id: 6,
+        title: 'Trigger',
+        body: 'aluminum',
+        imageLink: 'https://wallpaperaccess.com/cbr-bike',
+        // type:
+        author: 'tesla',
+        hashtags: ["BMW", "Trigger", "Hayabuza"],
+      },
+    
     ];
   }
 
   ngOnInit(): void {}
+  checkForAuthorInList(authorNameValue: string): void {
+    if (this.Bikeslist.some(bike => bike.author.toLowerCase() === authorNameValue.toLowerCase())) {
+      this.authorSearchMessage.message = "Author Found";
+      this.authorSearchMessage.found = true;
+    }
+    else {
+      this.authorSearchMessage.message = "Author Not Found";
+      this.authorSearchMessage.found = false;
+    }}
 }
