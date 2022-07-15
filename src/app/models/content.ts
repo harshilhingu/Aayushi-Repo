@@ -4,4 +4,6 @@ export interface Content {
     body?: string;
     imageLink?: string;
     type: string;
+    author: string;
+    hashtags?:string[];
 }

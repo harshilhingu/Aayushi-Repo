@@ -1,0 +1,15 @@
+<div *ngIf="BikesName">
+  <header>{{ BikesName.title }}</header>
+  <img *ngIf="BikesName.imageLink" [src]="BikesName.imageLink" (click)="displayAuthorAndId()">
+  <p *ngIf="BikesName.body">
+    {{ BikesName.body }}
+  </p>
+  <div class="author">{{ BikesName.author }}</div>
+  <div class="type">{{ BikesName.type }}</div>
+  <div class="hashtags" *ngIf="BikesName.hashtags">
+    <span *ngFor="let hashtag of BikesName.hashtags">
+      #{{ hashtag }}
+    </span>
+    <!-- <span>{{ chessPlayer.hashtags.replace(cp => "<span>" + cp + "</span>").join(" ")}}</span> -->
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<!-- <app-content-card *ngFor="let bikes of Bikeslist">
+  {{ bikes }}
+</app-content-card> -->
+
+
+<app-content-card *ngFor="let bikes of Bikeslist; even as isEven" [BikesName]="bikes"
+  [class.is-even]="isEven" [class.is-odd]="!isEven"></app-content-card>
